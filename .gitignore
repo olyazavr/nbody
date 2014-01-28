@@ -1,0 +1,4 @@
+/build
+/install
+/third_party/gtest/xcode/gtest.xcodeproj/xcuserdata/
+/third_party/gtest/xcode/Samples/FrameworkSample/WidgetFramework.xcodeproj/xcuserdata/
