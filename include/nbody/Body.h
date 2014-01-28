@@ -21,8 +21,8 @@ namespace nbody {
         inline Vector3f force() const { return _force; }
         inline Vector3f& force() { return _force; }
         inline float mass() const { return _mass; }
-        friend std::istream& operator>>( std::istream &is, Body &body );
-        friend std::ostream& operator<<( std::ostream &os, const Body &body );
+        friend std::istream& operator>>(std::istream &is, Body &body);
+        friend std::ostream& operator<<(std::ostream &os, const Body &body);
     };
     
 } // namespace nbody

@@ -180,7 +180,7 @@ def RemoveMatchingTests(test_output, pattern):
   """
 
   test_output = re.sub(
-      r'.*\[ RUN      \] .*%s(.|\n)*?\[(  FAILED  |       OK )\] .*%s.*\n' % (
+      r'.*\[ RUN      \] .*%s(.|\n)*?\[( FAILED  |       OK )\] .*%s.*\n' % (
           pattern, pattern),
       '',
       test_output)

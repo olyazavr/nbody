@@ -2358,9 +2358,9 @@ const char* String::Utf16ToAnsi(LPCWSTR utf16_str)  {
 // C string is considered different to any non-NULL C string,
 // including the empty string.
 bool String::CStringEquals(const char * lhs, const char * rhs) {
-  if ( lhs == NULL ) return rhs == NULL;
+  if (lhs == NULL ) return rhs == NULL;
 
-  if ( rhs == NULL ) return false;
+  if (rhs == NULL ) return false;
 
   return strcmp(lhs, rhs) == 0;
 }
@@ -3545,7 +3545,7 @@ Result HandleSehExceptionsInMethodIfSupported(
 #if GTEST_HAS_SEH
   __try {
     return (object->*method)();
-  } __except (internal::UnitTestOptions::GTestShouldProcessSEH(  // NOLINT
+  } __except (internal::UnitTestOptions::GTestShouldProcessSEH( // NOLINT
       GetExceptionCode())) {
     // We create the exception message on the heap because VC++ prohibits
     // creation of objects with destructors on stack in functions using __try
@@ -6766,7 +6766,7 @@ void DeathTestAbort(const std::string& message) {
 # define GTEST_DEATH_TEST_CHECK_(expression) \
   do { \
     if (!::testing::internal::IsTrue(expression)) { \
-      DeathTestAbort( \
+      DeathTestAbort(\
           ::std::string("CHECK failed: File ") + __FILE__ +  ", line " \
           + ::testing::internal::StreamableToString(__LINE__) + ": " \
           + #expression); \
@@ -6787,7 +6787,7 @@ void DeathTestAbort(const std::string& message) {
       gtest_retval = (expression); \
     } while (gtest_retval == -1 && errno == EINTR); \
     if (gtest_retval == -1) { \
-      DeathTestAbort( \
+      DeathTestAbort(\
           ::std::string("CHECK failed: File ") + __FILE__ + ", line " \
           + ::testing::internal::StreamableToString(__LINE__) + ": " \
           + #expression + " != -1"); \

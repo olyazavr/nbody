@@ -49,9 +49,9 @@ for test in ${test_executables[*]}; do
   "$test"
   result=$?
   if [ $result -eq 0 ]; then
-    succeeded=$(( $succeeded + 1 ))
+    succeeded=$(($succeeded + 1 ))
   else
-    failed=$(( failed + 1 ))
+    failed=$((failed + 1 ))
     failed_list="$failed_list $test"
   fi
 done

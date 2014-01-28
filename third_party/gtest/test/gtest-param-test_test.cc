@@ -649,7 +649,7 @@ class TestGenerationTest : public TestWithParam<int> {
     for (int i = 0; i < PARAMETER_COUNT; ++i) {
       Message test_name;
       test_name << "TestsExpandedAndRun/" << i;
-      if ( !UnitTestOptions::FilterMatchesTest(
+      if (!UnitTestOptions::FilterMatchesTest(
                 "TestExpansionModule/MultipleTestGenerationTest",
                 test_name.GetString())) {
         all_tests_in_test_case_selected = false;

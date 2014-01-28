@@ -1119,7 +1119,7 @@ AC_DEFUN([AM_SUBST_NOTMAKE], [_AM_SUBST_NOTMAKE($@)])
 #     $(am__untar) < result.tar
 AC_DEFUN([_AM_PROG_TAR],
 [# Always define AMTAR for backward compatibility.  Yes, it's still used
-# in the wild :-(  We should find a proper way to deprecate it ...
+# in the wild :-( We should find a proper way to deprecate it ...
 AC_SUBST([AMTAR], ['$${TAR-tar}'])
 m4_if([$1], [v7],
      [am__tar='$${TAR-tar} chof - "$$tardir"' am__untar='$${TAR-tar} xf -'],

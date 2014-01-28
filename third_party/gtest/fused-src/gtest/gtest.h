@@ -10494,7 +10494,7 @@ class ParameterizedTestCaseInfo : public ParameterizedTestCaseInfoBase {
         ParamGenerator<ParamType> generator((*gen_it->second)());
 
         string test_case_name;
-        if ( !instantiation_name.empty() )
+        if (!instantiation_name.empty() )
           test_case_name = instantiation_name + "/";
         test_case_name += test_info->test_case_base_name;
 

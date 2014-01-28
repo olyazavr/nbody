@@ -121,7 +121,7 @@ fi
 # trigger a bug in pdksh 5.2.14.
 for as_var in BASH_ENV ENV MAIL MAILPATH
 do eval test x\${$as_var+set} = xset \
-  && ( (unset $as_var) || exit 1) >/dev/null 2>&1 && unset $as_var || :
+  && ((unset $as_var) || exit 1) >/dev/null 2>&1 && unset $as_var || :
 done
 PS1='$ '
 PS2='> '
@@ -164,7 +164,7 @@ as_fn_success || { exitcode=1; echo as_fn_success failed.; }
 as_fn_failure && { exitcode=1; echo as_fn_failure succeeded.; }
 as_fn_ret_success || { exitcode=1; echo as_fn_ret_success failed.; }
 as_fn_ret_failure && { exitcode=1; echo as_fn_ret_failure succeeded.; }
-if ( set x; as_fn_ret_success y && test x = \"\$1\" ); then :
+if (set x; as_fn_ret_success y && test x = \"\$1\" ); then :
 
 else
   exitcode=1; echo positional parameters were not saved.
@@ -182,7 +182,7 @@ test x\$exitcode = x0 || exit 1"
     PATH=/empty FPATH=/empty; export PATH FPATH
     test \"X\`printf %s \$ECHO\`\" = \"X\$ECHO\" \\
       || test \"X\`print -r -- \$ECHO\`\" = \"X\$ECHO\" ) || exit 1
-test \$(( 1 + 1 )) = 2 || exit 1"
+test \$((1 + 1 )) = 2 || exit 1"
   if (eval "$as_required") 2>/dev/null; then :
   as_have_required=yes
 else
@@ -362,10 +362,10 @@ fi # as_fn_append
 # Perform arithmetic evaluation on the ARGs, and store the result in the
 # global $as_val. Take advantage of shells that can avoid forks. The arguments
 # must be portable across $(()) and expr.
-if (eval "test \$(( 1 + 1 )) = 2") 2>/dev/null; then :
+if (eval "test \$((1 + 1 )) = 2") 2>/dev/null; then :
   eval 'as_fn_arith ()
   {
-    as_val=$(( $* ))
+    as_val=$(($* ))
   }'
 else
   as_fn_arith ()
@@ -2743,7 +2743,7 @@ MAKEINFO=${MAKEINFO-"${am_missing_run}makeinfo"}
 # We need awk for the "check" target.  The system "awk" is bad on
 # some platforms.
 # Always define AMTAR for backward compatibility.  Yes, it's still used
-# in the wild :-(  We should find a proper way to deprecate it ...
+# in the wild :-( We should find a proper way to deprecate it ...
 AMTAR='$${TAR-tar}'
 
 am__tar='$${TAR-tar} chof - "$$tardir"' am__untar='$${TAR-tar} xf -'
@@ -4246,7 +4246,7 @@ ECHO=$ECHO$ECHO$ECHO$ECHO$ECHO$ECHO
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking how to print strings" >&5
 $as_echo_n "checking how to print strings... " >&6; }
 # Test print first, because it will be a builtin if present.
-if test "X`( print -r -- -n ) 2>/dev/null`" = X-n && \
+if test "X`(print -r -- -n ) 2>/dev/null`" = X-n && \
    test "X`print -r -- $ECHO 2>/dev/null`" = "X$ECHO"; then
   ECHO='print -r --'
 elif test "X`printf %s $ECHO 2>/dev/null`" = "X$ECHO"; then
@@ -5066,10 +5066,10 @@ max_cmd_len=$lt_cv_sys_max_cmd_len
 $as_echo_n "checking whether the shell understands some XSI constructs... " >&6; }
 # Try some XSI features
 xsi_shell=no
-( _lt_dummy="a/b/c"
+(_lt_dummy="a/b/c"
   test "${_lt_dummy##*/},${_lt_dummy%/*},${_lt_dummy#??}"${_lt_dummy%"$_lt_dummy"}, \
       = c,a/b,b/c, \
-    && eval 'test $(( 1 + 1 )) -eq 2 \
+    && eval 'test $((1 + 1 )) -eq 2 \
     && test "${#_lt_dummy}" -eq 5' ) >/dev/null 2>&1 \
   && xsi_shell=yes
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: $xsi_shell" >&5
@@ -5079,14 +5079,14 @@ $as_echo "$xsi_shell" >&6; }
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether the shell understands \"+=\"" >&5
 $as_echo_n "checking whether the shell understands \"+=\"... " >&6; }
 lt_shell_append=no
-( foo=bar; set foo baz; eval "$1+=\$2" && test "$foo" = barbaz ) \
+(foo=bar; set foo baz; eval "$1+=\$2" && test "$foo" = barbaz ) \
     >/dev/null 2>&1 \
   && lt_shell_append=yes
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: $lt_shell_append" >&5
 $as_echo "$lt_shell_append" >&6; }
 
 
-if ( (MAIL=60; unset MAIL) || exit) >/dev/null 2>&1; then
+if ((MAIL=60; unset MAIL) || exit) >/dev/null 2>&1; then
   lt_unset=unset
 else
   lt_unset=false
@@ -5376,7 +5376,7 @@ mingw* | pw32*)
   # func_win32_libid shell function, so use a weaker test based on 'objdump',
   # unless we find 'file', for example because we are cross-compiling.
   # func_win32_libid assumes BSD nm, so disallow it if using MS dumpbin.
-  if ( test "$lt_cv_nm_interface" = "BSD nm" && file / ) >/dev/null 2>&1; then
+  if (test "$lt_cv_nm_interface" = "BSD nm" && file / ) >/dev/null 2>&1; then
     lt_cv_deplibs_check_method='file_magic ^x86 archive import|^x86 DLL'
     lt_cv_file_magic_cmd='func_win32_libid'
   else
@@ -5428,7 +5428,7 @@ hpux10.20* | hpux11*)
     lt_cv_file_magic_test_file=/usr/lib/hpux32/libc.so
     ;;
   hppa*64*)
-    lt_cv_deplibs_check_method='file_magic (s[0-9][0-9][0-9]|ELF[ -][0-9][0-9])(-bit)?( [LM]SB)? shared object( file)?[, -]* PA-RISC [0-9]\.[0-9]'
+    lt_cv_deplibs_check_method='file_magic (s[0-9][0-9][0-9]|ELF[ -][0-9][0-9])(-bit)?([LM]SB)? shared object(file)?[, -]* PA-RISC [0-9]\.[0-9]'
     lt_cv_file_magic_test_file=/usr/lib/pa20_64/libc.sl
     ;;
   *)
@@ -5541,7 +5541,7 @@ want_nocaseglob=no
 if test "$build" = "$host"; then
   case $host_os in
   mingw* | pw32*)
-    if ( shopt | grep nocaseglob ) >/dev/null 2>&1; then
+    if (shopt | grep nocaseglob ) >/dev/null 2>&1; then
       want_nocaseglob=yes
     else
       file_magic_glob=`echo aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ | $SED -e "s/\(..\)/s\/[\1]\/[\1]\/g;/g"`
@@ -11448,7 +11448,7 @@ int main ()
       if (dlsym (self,"fnord"))       status = $lt_dlno_uscore;
       else
         {
-	  if (dlsym( self,"_fnord"))  status = $lt_dlneed_uscore;
+	  if (dlsym(self,"_fnord"))  status = $lt_dlneed_uscore;
           else puts (dlerror ());
 	}
       /* dlclose (self); */
@@ -11554,7 +11554,7 @@ int main ()
       if (dlsym (self,"fnord"))       status = $lt_dlno_uscore;
       else
         {
-	  if (dlsym( self,"_fnord"))  status = $lt_dlneed_uscore;
+	  if (dlsym(self,"_fnord"))  status = $lt_dlneed_uscore;
           else puts (dlerror ());
 	}
       /* dlclose (self); */
@@ -11713,8 +11713,8 @@ ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
 
 CC="$lt_save_CC"
 
-      if test -n "$CXX" && ( test "X$CXX" != "Xno" &&
-    ( (test "X$CXX" = "Xg++" && `g++ -v >/dev/null 2>&1` ) ||
+      if test -n "$CXX" && (test "X$CXX" != "Xno" &&
+    ((test "X$CXX" = "Xg++" && `g++ -v >/dev/null 2>&1` ) ||
     (test "X$CXX" != "Xg++"))) ; then
   ac_ext=cpp
 ac_cpp='$CXXCPP $CPPFLAGS'
@@ -12777,7 +12777,7 @@ fi
 	    # explicitly linking system object files so we need to strip them
 	    # from the output so that they don't get included in the library
 	    # dependencies.
-	    output_verbose_link_cmd='templist=`$CC -shared $CFLAGS -v conftest.$objext 2>&1 | $GREP "ld"`; templist=`func_echo_all "$templist" | $SED "s/\(^.*ld.*\)\( .*ld .*$\)/\1/"`; list=""; for z in $templist; do case $z in conftest.$objext) list="$list $z";; *.$objext);; *) list="$list $z";;esac; done; func_echo_all "X$list" | $Xsed'
+	    output_verbose_link_cmd='templist=`$CC -shared $CFLAGS -v conftest.$objext 2>&1 | $GREP "ld"`; templist=`func_echo_all "$templist" | $SED "s/\(^.*ld.*\)\(.*ld .*$\)/\1/"`; list=""; for z in $templist; do case $z in conftest.$objext) list="$list $z";; *.$objext);; *) list="$list $z";;esac; done; func_echo_all "X$list" | $Xsed'
 	    ;;
 	  xl* | mpixl* | bgxl*)
 	    # IBM XL 8.0 on PPC, with GNU ld
@@ -12933,7 +12933,7 @@ fi
 	    # explicitly linking system object files so we need to strip them
 	    # from the output so that they don't get included in the library
 	    # dependencies.
-	    output_verbose_link_cmd='templist=`$CC -shared $CFLAGS -v conftest.$objext 2>&1 | $GREP "ld" | $GREP -v "ld:"`; templist=`func_echo_all "$templist" | $SED "s/\(^.*ld.*\)\( .*ld.*$\)/\1/"`; list=""; for z in $templist; do case $z in conftest.$objext) list="$list $z";; *.$objext);; *) list="$list $z";;esac; done; func_echo_all "$list"'
+	    output_verbose_link_cmd='templist=`$CC -shared $CFLAGS -v conftest.$objext 2>&1 | $GREP "ld" | $GREP -v "ld:"`; templist=`func_echo_all "$templist" | $SED "s/\(^.*ld.*\)\(.*ld.*$\)/\1/"`; list=""; for z in $templist; do case $z in conftest.$objext) list="$list $z";; *.$objext);; *) list="$list $z";;esac; done; func_echo_all "$list"'
 	    ;;
 	  *)
 	    if test "$GXX" = yes && test "$with_gnu_ld" = no; then
@@ -15842,7 +15842,7 @@ fi
 # trigger a bug in pdksh 5.2.14.
 for as_var in BASH_ENV ENV MAIL MAILPATH
 do eval test x\${$as_var+set} = xset \
-  && ( (unset $as_var) || exit 1) >/dev/null 2>&1 && unset $as_var || :
+  && ((unset $as_var) || exit 1) >/dev/null 2>&1 && unset $as_var || :
 done
 PS1='$ '
 PS2='> '
@@ -15924,10 +15924,10 @@ fi # as_fn_append
 # Perform arithmetic evaluation on the ARGs, and store the result in the
 # global $as_val. Take advantage of shells that can avoid forks. The arguments
 # must be portable across $(()) and expr.
-if (eval "test \$(( 1 + 1 )) = 2") 2>/dev/null; then :
+if (eval "test \$((1 + 1 )) = 2") 2>/dev/null; then :
   eval 'as_fn_arith ()
   {
-    as_val=$(( $* ))
+    as_val=$(($* ))
   }'
 else
   as_fn_arith ()
@@ -17965,7 +17965,7 @@ test 0 -eq $? || _lt_function_replace_fail=:
   sed -e '/^func_arith ()$/,/^} # func_arith /c\
 func_arith ()\
 {\
-    func_arith_result=$(( $* ))\
+    func_arith_result=$(($* ))\
 } # Extended-shell func_arith implementation' "$cfgfile" > $cfgfile.tmp \
   && mv -f "$cfgfile.tmp" "$cfgfile" \
     || (rm -f "$cfgfile" && cp "$cfgfile.tmp" "$cfgfile" && rm -f "$cfgfile.tmp")

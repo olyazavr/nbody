@@ -726,7 +726,7 @@ func_version ()
 	/^# '$PROGRAM' (GNU /,/# warranty; / {
         s/^# //
 	s/^# *$//
-        s/\((C)\)[ 0-9,-]*\( [1-9][0-9]*\)/\1\2/
+        s/\((C)\)[ 0-9,-]*\([1-9][0-9]*\)/\1\2/
         p
      }' < "$progpath"
      exit $?
@@ -1576,7 +1576,7 @@ func_convert_core_msys_to_w32 ()
 {
   $opt_debug
   # awkward: cmd appends spaces to result
-  func_convert_core_msys_to_w32_result=`( cmd //c echo "$1" ) 2>/dev/null |
+  func_convert_core_msys_to_w32_result=`(cmd //c echo "$1" ) 2>/dev/null |
     $SED -e 's/[ ]*$//' -e "$lt_sed_naive_backslashify"`
 }
 #end: func_convert_core_msys_to_w32
@@ -8455,7 +8455,7 @@ EOF
 
 		# Restore the uninstalled library and exit
 		if test "$opt_mode" = relink; then
-		  ( cd "$output_objdir" && \
+		  (cd "$output_objdir" && \
 		    $RM "${realname}T" && \
 		    $MV "${realname}U" "$realname" )
 		fi
@@ -8548,7 +8548,7 @@ EOF
 
 	    # Restore the uninstalled library and exit
 	    if test "$opt_mode" = relink; then
-	      ( cd "$output_objdir" && \
+	      (cd "$output_objdir" && \
 	        $RM "${realname}T" && \
 		$MV "${realname}U" "$realname" )
 	    fi
@@ -9434,7 +9434,7 @@ relink_command=\"$relink_command\""
 
       # Do a symbolic link so that the libtool archive can be found in
       # LD_LIBRARY_PATH before the program is installed.
-      func_show_eval '( cd "$output_objdir" && $RM "$outputname" && $LN_S "../$outputname" "$outputname" )' 'exit $?'
+      func_show_eval '(cd "$output_objdir" && $RM "$outputname" && $LN_S "../$outputname" "$outputname" )' 'exit $?'
       ;;
     esac
     exit $EXIT_SUCCESS

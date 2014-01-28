@@ -1176,7 +1176,7 @@ ECHO=$ECHO$ECHO$ECHO$ECHO$ECHO$ECHO
 
 AC_MSG_CHECKING([how to print strings])
 # Test print first, because it will be a builtin if present.
-if test "X`( print -r -- -n ) 2>/dev/null`" = X-n && \
+if test "X`(print -r -- -n ) 2>/dev/null`" = X-n && \
    test "X`print -r -- $ECHO 2>/dev/null`" = "X$ECHO"; then
   ECHO='print -r --'
 elif test "X`printf %s $ECHO 2>/dev/null`" = "X$ECHO"; then
@@ -1811,7 +1811,7 @@ int main ()
       if (dlsym (self,"fnord"))       status = $lt_dlno_uscore;
       else
         {
-	  if (dlsym( self,"_fnord"))  status = $lt_dlneed_uscore;
+	  if (dlsym(self,"_fnord"))  status = $lt_dlneed_uscore;
           else puts (dlerror ());
 	}
       /* dlclose (self); */
@@ -3219,7 +3219,7 @@ mingw* | pw32*)
   # func_win32_libid shell function, so use a weaker test based on 'objdump',
   # unless we find 'file', for example because we are cross-compiling.
   # func_win32_libid assumes BSD nm, so disallow it if using MS dumpbin.
-  if ( test "$lt_cv_nm_interface" = "BSD nm" && file / ) >/dev/null 2>&1; then
+  if (test "$lt_cv_nm_interface" = "BSD nm" && file / ) >/dev/null 2>&1; then
     lt_cv_deplibs_check_method='file_magic ^x86 archive import|^x86 DLL'
     lt_cv_file_magic_cmd='func_win32_libid'
   else
@@ -3271,7 +3271,7 @@ hpux10.20* | hpux11*)
     lt_cv_file_magic_test_file=/usr/lib/hpux32/libc.so
     ;;
   hppa*64*)
-    [lt_cv_deplibs_check_method='file_magic (s[0-9][0-9][0-9]|ELF[ -][0-9][0-9])(-bit)?( [LM]SB)? shared object( file)?[, -]* PA-RISC [0-9]\.[0-9]']
+    [lt_cv_deplibs_check_method='file_magic (s[0-9][0-9][0-9]|ELF[ -][0-9][0-9])(-bit)?([LM]SB)? shared object(file)?[, -]* PA-RISC [0-9]\.[0-9]']
     lt_cv_file_magic_test_file=/usr/lib/pa20_64/libc.sl
     ;;
   *)
@@ -3381,7 +3381,7 @@ want_nocaseglob=no
 if test "$build" = "$host"; then
   case $host_os in
   mingw* | pw32*)
-    if ( shopt | grep nocaseglob ) >/dev/null 2>&1; then
+    if (shopt | grep nocaseglob ) >/dev/null 2>&1; then
       want_nocaseglob=yes
     else
       file_magic_glob=`echo aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ | $SED -e "s/\(..\)/s\/[[\1]]\/[[\1]]\/g;/g"`
@@ -5838,8 +5838,8 @@ m4_defun([_LT_LANG_CXX_CONFIG],
 [m4_require([_LT_FILEUTILS_DEFAULTS])dnl
 m4_require([_LT_DECL_EGREP])dnl
 m4_require([_LT_PATH_MANIFEST_TOOL])dnl
-if test -n "$CXX" && ( test "X$CXX" != "Xno" &&
-    ( (test "X$CXX" = "Xg++" && `g++ -v >/dev/null 2>&1` ) ||
+if test -n "$CXX" && (test "X$CXX" != "Xno" &&
+    ((test "X$CXX" = "Xg++" && `g++ -v >/dev/null 2>&1` ) ||
     (test "X$CXX" != "Xg++"))) ; then
   AC_PROG_CXXCPP
 else
@@ -6506,7 +6506,7 @@ if test "$_lt_caught_CXX_error" != yes; then
 	    # explicitly linking system object files so we need to strip them
 	    # from the output so that they don't get included in the library
 	    # dependencies.
-	    output_verbose_link_cmd='templist=`$CC -shared $CFLAGS -v conftest.$objext 2>&1 | $GREP "ld"`; templist=`func_echo_all "$templist" | $SED "s/\(^.*ld.*\)\( .*ld .*$\)/\1/"`; list=""; for z in $templist; do case $z in conftest.$objext) list="$list $z";; *.$objext);; *) list="$list $z";;esac; done; func_echo_all "X$list" | $Xsed'
+	    output_verbose_link_cmd='templist=`$CC -shared $CFLAGS -v conftest.$objext 2>&1 | $GREP "ld"`; templist=`func_echo_all "$templist" | $SED "s/\(^.*ld.*\)\(.*ld .*$\)/\1/"`; list=""; for z in $templist; do case $z in conftest.$objext) list="$list $z";; *.$objext);; *) list="$list $z";;esac; done; func_echo_all "X$list" | $Xsed'
 	    ;;
 	  xl* | mpixl* | bgxl*)
 	    # IBM XL 8.0 on PPC, with GNU ld
@@ -6662,7 +6662,7 @@ if test "$_lt_caught_CXX_error" != yes; then
 	    # explicitly linking system object files so we need to strip them
 	    # from the output so that they don't get included in the library
 	    # dependencies.
-	    output_verbose_link_cmd='templist=`$CC -shared $CFLAGS -v conftest.$objext 2>&1 | $GREP "ld" | $GREP -v "ld:"`; templist=`func_echo_all "$templist" | $SED "s/\(^.*ld.*\)\( .*ld.*$\)/\1/"`; list=""; for z in $templist; do case $z in conftest.$objext) list="$list $z";; *.$objext);; *) list="$list $z";;esac; done; func_echo_all "$list"'
+	    output_verbose_link_cmd='templist=`$CC -shared $CFLAGS -v conftest.$objext 2>&1 | $GREP "ld" | $GREP -v "ld:"`; templist=`func_echo_all "$templist" | $SED "s/\(^.*ld.*\)\(.*ld.*$\)/\1/"`; list=""; for z in $templist; do case $z in conftest.$objext) list="$list $z";; *.$objext);; *) list="$list $z";;esac; done; func_echo_all "$list"'
 	    ;;
 	  *)
 	    if test "$GXX" = yes && test "$with_gnu_ld" = no; then
@@ -7799,10 +7799,10 @@ m4_defun([_LT_CHECK_SHELL_FEATURES],
 [AC_MSG_CHECKING([whether the shell understands some XSI constructs])
 # Try some XSI features
 xsi_shell=no
-( _lt_dummy="a/b/c"
+(_lt_dummy="a/b/c"
   test "${_lt_dummy##*/},${_lt_dummy%/*},${_lt_dummy#??}"${_lt_dummy%"$_lt_dummy"}, \
       = c,a/b,b/c, \
-    && eval 'test $(( 1 + 1 )) -eq 2 \
+    && eval 'test $((1 + 1 )) -eq 2 \
     && test "${#_lt_dummy}" -eq 5' ) >/dev/null 2>&1 \
   && xsi_shell=yes
 AC_MSG_RESULT([$xsi_shell])
@@ -7810,13 +7810,13 @@ _LT_CONFIG_LIBTOOL_INIT([xsi_shell='$xsi_shell'])
 
 AC_MSG_CHECKING([whether the shell understands "+="])
 lt_shell_append=no
-( foo=bar; set foo baz; eval "$[1]+=\$[2]" && test "$foo" = barbaz ) \
+(foo=bar; set foo baz; eval "$[1]+=\$[2]" && test "$foo" = barbaz ) \
     >/dev/null 2>&1 \
   && lt_shell_append=yes
 AC_MSG_RESULT([$lt_shell_append])
 _LT_CONFIG_LIBTOOL_INIT([lt_shell_append='$lt_shell_append'])
 
-if ( (MAIL=60; unset MAIL) || exit) >/dev/null 2>&1; then
+if ((MAIL=60; unset MAIL) || exit) >/dev/null 2>&1; then
   lt_unset=unset
 else
   lt_unset=false
@@ -7902,7 +7902,7 @@ m4_defun([_LT_PROG_REPLACE_SHELLFNS],
 
   _LT_PROG_FUNCTION_REPLACE([func_xform], [    func_xform_result=${1%.*}.lo])
 
-  _LT_PROG_FUNCTION_REPLACE([func_arith], [    func_arith_result=$(( $[*] ))])
+  _LT_PROG_FUNCTION_REPLACE([func_arith], [    func_arith_result=$(($[*] ))])
 
   _LT_PROG_FUNCTION_REPLACE([func_len], [    func_len_result=${#1}])
 fi

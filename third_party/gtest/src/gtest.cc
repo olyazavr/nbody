@@ -874,9 +874,9 @@ const char* String::Utf16ToAnsi(LPCWSTR utf16_str)  {
 // C string is considered different to any non-NULL C string,
 // including the empty string.
 bool String::CStringEquals(const char * lhs, const char * rhs) {
-  if ( lhs == NULL ) return rhs == NULL;
+  if (lhs == NULL ) return rhs == NULL;
 
-  if ( rhs == NULL ) return false;
+  if (rhs == NULL ) return false;
 
   return strcmp(lhs, rhs) == 0;
 }
@@ -2061,7 +2061,7 @@ Result HandleSehExceptionsInMethodIfSupported(
 #if GTEST_HAS_SEH
   __try {
     return (object->*method)();
-  } __except (internal::UnitTestOptions::GTestShouldProcessSEH(  // NOLINT
+  } __except (internal::UnitTestOptions::GTestShouldProcessSEH( // NOLINT
       GetExceptionCode())) {
     // We create the exception message on the heap because VC++ prohibits
     // creation of objects with destructors on stack in functions using __try
