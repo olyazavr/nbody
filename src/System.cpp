@@ -9,6 +9,7 @@
 
 namespace nbody {
     
+    // writes out acceleration into acc (after interacting bodies i, j)
     inline void System::interactBodies(size_t i, size_t j, float softFactor, Vector3f &acc) const {
         Vector3f r = _body[j].position() - _body[i].position();
         float distance = r.norm() + softFactor;
@@ -17,6 +18,7 @@ namespace nbody {
         acc = acc + NEWTON_G * _body[j].mass() * invDistCubed * r;
     }
     
+    // interact each pair of bodies (mutates accelerations)
     void System::computeGravitation() {
         for(size_t i = 0; i < _nBodies; ++i) {
             Vector3f acc{ 0.0f, 0.0f, 0.0f };
@@ -29,6 +31,7 @@ namespace nbody {
         }
     }
     
+    // actual integration
     void System::integrateSystem(float dt) {
         Vector3f r, v, a;
         for(size_t i = 0; i < _nBodies; ++i) {
