@@ -142,10 +142,8 @@ int main( int argc, char **argv ) {
             sim->evolveSystem(1e4, 0.000001);
         }
         sim->saveRun();
-        return 0;
     } catch(const std::exception &e) {
         std::cerr << "Error: " << e.what() << "\n";
-        return 1;
     }
 
   try {
@@ -153,26 +151,26 @@ int main( int argc, char **argv ) {
         float *buf = new float[bufSize];
 
     // starting positions
-        for( size_t i = 0; i < N; ++i ) {
-            buf[4*i] = coords[i]; // x
-            buf[4*i+1] = coords[i + 1]; // y
-            buf[4*i+2] = coords[i + 2]; // z
-            buf[4*i+3] = 1.0f; // nothing
+    for( size_t i = 0; i < N; ++i ) {
+        buf[4*i] = coords[i]; // x
+        buf[4*i+1] = coords[i + 1]; // y
+        buf[4*i+2] = coords[i + 2]; // z
+        buf[4*i+3] = 1.0f; // nothing
 
-            std::cout << buf[4*i] << " " << buf[4*i+1];
-      std::cout << " " << buf[4*i+2] << " " << buf[4*i+3] << "\n";
+        std::cout << buf[4*i] << " " << buf[4*i+1];
+        std::cout << " " << buf[4*i+2] << " " << buf[4*i+3] << "\n";
     }
 
     // start the magic!
-        Shaders shaders;
-        shaders.addToVertexList( nBodyShaders::vertex1 );
-        shaders.addToFragmentList( nBodyShaders::fragment1 );
+    Shaders shaders;
+    shaders.addToVertexList( nBodyShaders::vertex1 );
+    shaders.addToFragmentList( nBodyShaders::fragment1 );
 
     // pass in sim because we need updated coordinates. UNSAFE, but
     // so is all of OpenGL
     NBodyWindow * window = new NBodyWindow("N-Body Simulation!", sim, GlutWrapper::NDEBUG);
-        window->init( argc, argv, 500, 500, &shaders, bufSize, buf );
-        window->run();
+    window->init( argc, argv, 500, 500, &shaders, bufSize, buf );
+    window->run();
 
     // release resources
     delete [] buf;
