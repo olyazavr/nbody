@@ -1,6 +1,6 @@
 #include <nbody/Simulation.h>
-#include <nbody/GlutWrapper.h>
-#include <nbody/Shaders.h>
+#include "GlutWrapper.h"
+#include "Shaders.h"
 
 #include <glload/gl_3_0.h>
 #include <glload/gll.hpp>

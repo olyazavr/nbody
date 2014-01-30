@@ -1,5 +1,5 @@
-#include <nbody/Shaders.h>
-#include <nbody/GlutWrapper.h>
+#include "Shaders.h"
+#include "GlutWrapper.h"
 
 #include <glload/gl_3_0.h>
 #include <glload/gll.hpp>
@@ -13,16 +13,22 @@
 GlutWrapper *GlutWrapper::_instance = nullptr;
 
 GlutWrapper::GlutWrapper() : 
-  _debugMode{Mode::NDEBUG}, _width{}, _height{}, 
-  _windowId{}, _windowTitle{} {}
+  _shaders{nullptr}, _width{}, _height{}, 
+  _windowId{}, 
+  _bufSize{}, _buf{nullptr},_windowTitle{}, _positionBufferObject{},
+  _vao{}, _program{}, _debugMode{Mode::NDEBUG} {}
 
 GlutWrapper::GlutWrapper( Mode debugMode ) : 
-  _debugMode{debugMode}, _width{}, _height{}, 
-  _windowId{}, _windowTitle{} {}
+  _shaders{nullptr}, _width{}, _height{}, 
+  _windowId{}, 
+  _bufSize{}, _buf{nullptr},_windowTitle{}, _positionBufferObject{},
+  _vao{}, _program{}, _debugMode{debugMode} {}
 
 GlutWrapper::GlutWrapper( const std::string &title, Mode debugMode ) : 
-  _debugMode{debugMode}, _width{}, _height{}, 
-  _windowId{}, _windowTitle{title} {}
+  _shaders{nullptr}, _width{}, _height{}, 
+  _windowId{},
+  _bufSize{}, _buf{nullptr}, _windowTitle{title}, _positionBufferObject{},
+  _vao{}, _program{}, _debugMode{debugMode} {}
 
 GlutWrapper::~GlutWrapper() {
 //  glutDestroyWindow( _windowId );
@@ -33,16 +39,6 @@ void GlutWrapper::init( int argc, char **argv, int theWidth, int theHeight, Shad
 	_height = theHeight;
 	if( _windowTitle == "" ) {
 		_windowTitle = std::string( argv[0] );
-  }
-
-  // copy constructor
-  GlutWrapper::GlutWrapper(const GlutWrapper &l) {
-    // nope
-  }
-
-  // assignment
-  GlutWrapper& GlutWrapper::operator=(const GlutWrapper &l){
-      return *this;
   }
 
   glutInit( &argc, argv );

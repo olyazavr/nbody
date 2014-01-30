@@ -34,8 +34,8 @@ public:
   GlutWrapper();
   GlutWrapper( Mode debugMode );
 	GlutWrapper( const std::string &title );
-  GlutWrapper(const GlutWrapper &l);
-  GlutWrapper& operator=(const GlutWrapper &l);
+  GlutWrapper(const GlutWrapper& l) = delete;
+  GlutWrapper& operator=(const GlutWrapper &l) = delete;
 	GlutWrapper( const std::string &title, 
                Mode debugMode = Mode::NDEBUG );
   ~GlutWrapper();

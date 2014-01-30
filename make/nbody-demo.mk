@@ -11,11 +11,15 @@ $(TARGET_PROJ_DEMO) : $(INSTALL_DIR)/lib/lib$(PROJ_NAME).a
 
 ## Link our nbody-demo.x executable with libnbody.a
 ## (here is where you add any extra third-party library linkings needed)
-$(TARGET_PROJ_DEMO) : LDFLAGS += $(INSTALL_DIR)/lib/lib$(PROJ_NAME).a
+$(TARGET_PROJ_DEMO) : LDFLAGS += $(INSTALL_DIR)/lib/lib$(PROJ_NAME).a \
+																 -lglut -lGL \
+																 $(GLLOAD_DIR)/lib/libglload.a \
 
 ## Add any more files to this list
 OBJECTS_PROJ_DEMO := \
 	$(BUILD_DIR_PROJ_DEMO)/main.o \
+	$(BUILD_DIR_PROJ_DEMO)/GlutWrapper.o \
+	$(BUILD_DIR_PROJ_DEMO)/Shaders.o \
 	#$(BUILD_DIR_PROJ_DEMO)/otherFiles.o \
 	#$(BUILD_DIR_PROJ_DEMO)/moreOtherFiles.o \
 ## Add any more files you like!
