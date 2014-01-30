@@ -36,5 +36,15 @@ namespace nbody {
         output.open( _name.c_str() );
         _system->writeState(output);
     }
+
+    // get the new coordinates (x1, y1, z1, x2, y2, z2)
+    int* Simulation::getNewCoords(){
+        return _system->getNewCoords();
+    }
+
+    // gets the number of bodies
+    size_t Simulation::getNbodies(){
+        return _system->getNbodies();
+    }
     
 } // namespace nbody

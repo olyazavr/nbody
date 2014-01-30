@@ -2,11 +2,16 @@
 
 #include <iostream>
 #include <fstream>
+#include <stdio.h>
+#include <string>
 
 int main() {
     try {
-        std::ifstream input{ "resources/nbody/binary-system-simple.txt" };
+        // read in some crazy hex format
+        std::string file = "resources/nbody/binary-system-simple.txt";
+        std::ifstream input{ file };
         nbody::Simulation sim{input};
+
         for(int i = 0; i < 40; ++i) {
             std::cout << "==EVOLUTION " << i + 1 << "\n";
             sim.saveRun();
