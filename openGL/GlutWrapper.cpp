@@ -1,5 +1,5 @@
-#include "Shaders.h"
-#include "GlutWrapper.h"
+#include <nbody/Shaders.h>
+#include <nbody/GlutWrapper.h>
 
 #include <glload/gl_3_0.h>
 #include <glload/gll.hpp>
@@ -33,6 +33,16 @@ void GlutWrapper::init( int argc, char **argv, int theWidth, int theHeight, Shad
 	_height = theHeight;
 	if( _windowTitle == "" ) {
 		_windowTitle = std::string( argv[0] );
+  }
+
+  // copy constructor
+  GlutWrapper::GlutWrapper(const GlutWrapper &l) {
+    // nope
+  }
+
+  // assignment
+  GlutWrapper& GlutWrapper::operator=(const GlutWrapper &l){
+      return *this;
   }
 
   glutInit( &argc, argv );

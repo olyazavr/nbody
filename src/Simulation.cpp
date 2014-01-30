@@ -4,6 +4,7 @@
 #include <stdexcept>
 #include <string>
 #include <fstream>
+#include <string>
 
 namespace nbody {
     
@@ -19,6 +20,21 @@ namespace nbody {
         } else {
             _system = new System{input};
         }
+    }
+
+    std::string Simulation::getName() const{
+        return _name;
+    }
+
+    // copy constructor
+    Simulation::Simulation(const Simulation &l): _system{NULL}, _name{l.getName()} {
+        //nope
+    }
+
+    // assignment
+    Simulation& Simulation::operator=(const Simulation &l){
+        _name = l.getName();
+        return *this;
     }
     
     void Simulation::evolveSystem(int nSteps, float dt) {

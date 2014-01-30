@@ -18,7 +18,7 @@ class GlutWrapper {
 													 GLenum severity, GLsizei length,
 													 const GLchar* message, GLvoid* userParam );
 	Shaders *_shaders;
-	void GlutWrapper::initVertexBuffers( size_t bufSize, float *buf );
+	void initVertexBuffers( size_t bufSize, float *buf );
 protected:
   int _width, _height;
   int _windowId;
@@ -33,7 +33,9 @@ public:
 	enum Mode { DEBUG, NDEBUG };
   GlutWrapper();
   GlutWrapper( Mode debugMode );
-	GlutWrapper::GlutWrapper( const std::string &title );
+	GlutWrapper( const std::string &title );
+  GlutWrapper(const GlutWrapper &l);
+  GlutWrapper& operator=(const GlutWrapper &l);
 	GlutWrapper( const std::string &title, 
                Mode debugMode = Mode::NDEBUG );
   ~GlutWrapper();
