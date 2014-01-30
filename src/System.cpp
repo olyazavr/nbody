@@ -52,11 +52,6 @@ namespace nbody {
         computeGravitation();
         integrateSystem(dt);
     }
-
-    // gets the number of bodies
-    size_t System::getNbodies() {
-        return _nBodies;
-    }
     
     void System::readState(std::istream &input) {
         input >> _nBodies;
@@ -93,6 +88,11 @@ namespace nbody {
         }
 
         return values;
+    }
+    
+     // gets the number of bodies
+    size_t System::getNbodies() {
+        return _nBodies;
     }
     
 } // namespace nbody
