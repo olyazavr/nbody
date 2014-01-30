@@ -52,6 +52,11 @@ namespace nbody {
         computeGravitation();
         integrateSystem(dt);
     }
+
+    // gets the number of bodies
+    size_t System::getNbodies() {
+        return _nBodies;
+    }
     
     void System::readState(std::istream &input) {
         input >> _nBodies;
@@ -69,6 +74,25 @@ namespace nbody {
         for(size_t i = 0; i < _nBodies; ++i) {
             output << _body[i] << "\n";
         }
+    }
+
+    void System::returnState(std::ostream &output) const {
+        output << _nBodies << "\n";
+        for(size_t i = 0; i < _nBodies; ++i) {
+            output << _body[i] << "\n";
+        }
+    }
+
+    // get the new coordinates (x1, y1, z1, x2, y2, z2)
+    int* System::getNewCoords() {
+        int *values = new int[_nBodies * 3]; // remember to delete []!!
+        for(size_t i = 0; i < _nBodies; ++i) {
+            values[i] = _body->position().x();
+            values[i+1] = _body->position().y();
+            values[i+2] = _body->position().z();
+        }
+
+        return values;
     }
     
 } // namespace nbody

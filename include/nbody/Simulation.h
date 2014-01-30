@@ -20,6 +20,8 @@ namespace nbody {
         void evolveSystem(int nSteps, float dt);
         void loadRun(std::istream &input);
         void saveRun() const;
+        size_t getNbodies();
+        int* getNewCoords();
     };
     
 } // namespace nbody
