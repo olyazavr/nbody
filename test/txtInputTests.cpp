@@ -11,17 +11,20 @@
 
 #include <iostream>
 #include <stdio.h>
+#include <fstream>
+#include <cstdio>
 
 #include <dirent.h>
+
+using namespace std;
 
 int MAX_CHARS_PER_LINE = 512;
 
 
  // if dirent ends up not working out this is how to commandline bullshit
  // probably shouldn't use ever, muy bad
- 
- 
- 
+
+
  std::string exec(char* cmd) {
  
      // cd into directory first
@@ -38,8 +41,6 @@ int MAX_CHARS_PER_LINE = 512;
      return result;
  }
 
-
- 
 
 
 TEST(txtInputTests, stationary) {
@@ -73,15 +74,12 @@ TEST(txtInputTests, stationary) {
         
         // well this sucks
         perror ("error reading output file");
-        return EXIT_FAILURE;
     }
-     
     
-    
-    std::ifstream fin;
+    ifstream fin;
     fin.open("name.txt");
     
-    while (!fin.eof()) {
+    while (fin.is_open()) {
         
         // this is kinda shitty and manual right now
         // read each line and compare answers
@@ -90,7 +88,7 @@ TEST(txtInputTests, stationary) {
         fin.getline(line, MAX_CHARS_PER_LINE);
         ASSERT_STREQ(line, "1");
         
-        fin.getline(line, MAX_CHARS_PER_LINE);
+        std::getline(fin, line);
         ASSERT_STREQ(line, "0 0 0  0 0 0  0 0 0 2.0e+1");
         
         fin.getline(line, MAX_CHARS_PER_LINE);

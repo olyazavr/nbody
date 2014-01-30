@@ -6,6 +6,8 @@
 #include <glload/gll.hpp>
 #include <GL/freeglut.h>
 
+#include <OpenGL/freeglut.h>
+
 #include <iostream>
 #include <fstream>
 #include <cstdint>
@@ -130,7 +132,6 @@ int main( int argc, char **argv ) {
   try {
         // read in this file (with bodies info)
         std::ifstream input{ "resources/nbody/binary-system-simple.txt" };
-        std::cout << input << '\n';
         sim = new nbody::Simulation(input);
 
         // get the number of bodes and coordinates
