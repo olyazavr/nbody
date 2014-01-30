@@ -174,8 +174,8 @@ int main( int argc, char **argv ) {
 
     // release resources
     delete [] buf;
-    delete [] sim;
-    delete [] window;
+    delete sim;
+    delete window;
     return 0;
   } catch( const std::exception &e ) {
     std::cerr << "Error: " << e.what() << "\n";
