@@ -39,7 +39,7 @@ FLAGS := -m64 -Wall -Wextra -Wshadow -Werror -pedantic
 # Use the C99 standard
 CFLAGS := -std=c99 $(FLAGS)
 # Use the C++11 standard and warn on violations of Meyers' "Effective C++"
-CXXFLAGS := -std=c++11 -Weffc++ $(FLAGS)
+CXXFLAGS := -std=c++11 -stdlib=libc++ -Weffc++ $(COMPILER_OPTIONS)
 # Flags for the linker; link to math and pthread (required for gtest)
 LDFLAGS := -L$(INSTALL_DIR)/lib -L$(GTEST_DIR)/lib -lm -lpthread
 
