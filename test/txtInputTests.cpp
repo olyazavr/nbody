@@ -10,9 +10,10 @@
 #include <nbody/Simulation.h>
 
 #include <iostream>
+#include <sstream>
 #include <stdio.h>
 #include <fstream>
-#include <cstdio>
+#include <string>
 
 #include <dirent.h>
 
@@ -21,25 +22,25 @@ using namespace std;
 int MAX_CHARS_PER_LINE = 512;
 
 
- // if dirent ends up not working out this is how to commandline bullshit
- // probably shouldn't use ever, muy bad
+// if dirent ends up not working out this is how to commandline bullshit
+// probably shouldn't use ever, muy bad
 
 
- std::string exec(char* cmd) {
- 
-     // cd into directory first
-     popen("cd", "r");
-     FILE* pipe = popen(cmd, "r");
-     if (!pipe) return "ERROR";
-     char buffer[128];
-     std::string result = "";
-     while(!feof(pipe)) {
-         if(fgets(buffer, 128, pipe) != NULL)
-             result += buffer;
-     }
-     pclose(pipe);
-     return result;
- }
+std::string exec(char* cmd) {
+    
+    // cd into directory first
+    popen("cd", "r");
+    FILE* pipe = popen(cmd, "r");
+    if (!pipe) return "ERROR";
+    char buffer[128];
+    std::string result = "";
+    while(!feof(pipe)) {
+        if(fgets(buffer, 128, pipe) != NULL)
+            result += buffer;
+    }
+    pclose(pipe);
+    return result;
+}
 
 
 
@@ -62,12 +63,15 @@ TEST(txtInputTests, stationary) {
     DIR *dir;
     struct dirent *entry;
     
+    // initialize string
+    string filename = "";
+    
     if ((dir = opendir ("output path")) != NULL) {
         //still need output path
         
         //get dat file
         
-        std::string filename = entry->d_name;
+        filename = entry->d_name;
         closedir (dir);
         
     } else {
@@ -76,8 +80,10 @@ TEST(txtInputTests, stationary) {
         perror ("error reading output file");
     }
     
-    ifstream fin;
-    fin.open("name.txt");
+    ifstream fin("name.txt");
+    //f.open("name.txt");
+    //istream& fin = f;
+    char* line;
     
     while (fin.is_open()) {
         
@@ -85,10 +91,12 @@ TEST(txtInputTests, stationary) {
         // read each line and compare answers
         
         char line[MAX_CHARS_PER_LINE];
-        fin.getline(line, MAX_CHARS_PER_LINE);
+        getline(fin, line);
+        
+        // getline doesn't work, works with istream ---> either fix this or fix casting
         ASSERT_STREQ(line, "1");
         
-        std::getline(fin, line);
+        fin.getline(line, MAX_CHARS_PER_LINE);
         ASSERT_STREQ(line, "0 0 0  0 0 0  0 0 0 2.0e+1");
         
         fin.getline(line, MAX_CHARS_PER_LINE);
@@ -96,7 +104,10 @@ TEST(txtInputTests, stationary) {
         
     }
     /* delete so the output directory only has one entry */
-    remove(filename + ".txt");
+    const char* path = (filename + ".txt").c_str();
+    if( remove( path ) != 0 ){
+        perror( "Error deleting file" );
+    }
     
     
 }
