@@ -6,8 +6,6 @@
 #include <glload/gll.hpp>
 #include <GL/freeglut.h>
 
-#include <OpenGL/freeglut.h>
-
 #include <iostream>
 #include <fstream>
 #include <cstdint>

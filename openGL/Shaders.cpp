@@ -1,4 +1,4 @@
-#include "Shaders.h"
+#include <nbody/Shaders.h>
 
 #include <glload/gl_3_0.h>
 #include <glload/gll.hpp>
