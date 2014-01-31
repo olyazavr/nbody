@@ -83,18 +83,22 @@ void NBodyWindow::keyboard( unsigned char key, int /*x*/, int /*y*/ ) {
   }
 }
 
-int theCount = 0;
-
 void NBodyWindow::display() {
     // get the new coordinates, update the display
   int * coords = _sim->getNewCoords();
-    for( size_t i = 0; i < _bufSize / 4; ++i ) {
+
+    _sim->saveRun();
+    _sim->evolveSystem(1e4, 0.000001);
+    
+  for(size_t i = 0; i < _bufSize / 4; ++i ) {
         _buf[4*i] = coords[i]; // x
         _buf[4*i+1] = coords[i + 1]; // y
         _buf[4*i+2] = coords[i + 2]; // z
         _buf[4*i+3] = 1.0f; // nothing
-        theCount++;
+        std::cout << coords[i] << " " << coords[i + 1] << " " <<  coords[i + 2] << "\n";
   }
+
+  delete [] coords;
 
   // bind all the things
     glBindBuffer( GL_ARRAY_BUFFER, _positionBufferObject );
@@ -135,13 +139,6 @@ int main( int argc, char **argv ) {
         // get the number of bodes and coordinates
         N = sim->getNbodies();
         coords = sim->getNewCoords();
-
-        for(int i = 0; i < 40; ++i) {
-            std::cout << "==EVOLUTION " << i + 1 << "\n";
-            sim->saveRun();
-            sim->evolveSystem(1e4, 0.000001);
-        }
-        sim->saveRun();
     } catch(const std::exception &e) {
         std::cerr << "Error: " << e.what() << "\n";
     }
@@ -161,6 +158,12 @@ int main( int argc, char **argv ) {
         std::cout << " " << buf[4*i+2] << " " << buf[4*i+3] << "\n";
     }
 
+    // for(int i = 0; i < 40; ++i) {
+    //     std::cout << "==EVOLUTION " << i + 1 << "\n";
+    //     _sim->saveRun();
+    //     _sim->evolveSystem(1e4, 0.000001);
+    // }
+
     // start the magic!
     Shaders shaders;
     shaders.addToVertexList( nBodyShaders::vertex1 );
@@ -171,6 +174,7 @@ int main( int argc, char **argv ) {
     NBodyWindow * window = new NBodyWindow("N-Body Simulation!", sim, GlutWrapper::NDEBUG);
     window->init( argc, argv, 500, 500, &shaders, bufSize, buf );
     window->run();
+    sim->saveRun();
 
     // release resources
     delete [] buf;
