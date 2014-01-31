@@ -26,7 +26,7 @@ namespace nbody {
         void computeGravitation();
         void integrateSystem(float dt);
         size_t getNbodies();
-        int* getNewCoords();
+        float* getNewCoords();
         void readState(std::istream &input);
         void returnState(std::ostream &output) const;
         void readState(std::string filename);

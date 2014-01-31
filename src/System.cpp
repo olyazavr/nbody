@@ -79,12 +79,12 @@ namespace nbody {
     }
 
     // get the new coordinates (x1, y1, z1, x2, y2, z2)
-    int* System::getNewCoords() {
-        int *values = new int[_nBodies * 3]; // remember to delete []!!
+    float* System::getNewCoords() {
+        float *values = new float[_nBodies * 3]; // remember to delete []!!
         for(size_t i = 0; i < _nBodies; ++i) {
-            values[i] = _body->position().x();
-            values[i+1] = _body->position().y();
-            values[i+2] = _body->position().z();
+            values[3*i] = _body->position().x();
+            values[3*i+1] = _body->position().y();
+            values[3*i+2] = _body->position().z();
         }
 
         return values;

@@ -54,7 +54,7 @@ namespace nbody {
     }
 
     // get the new coordinates (x1, y1, z1, x2, y2, z2)
-    int* Simulation::getNewCoords(){
+    float* Simulation::getNewCoords(){
         return _system->getNewCoords();
     }
 

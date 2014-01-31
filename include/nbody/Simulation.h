@@ -22,7 +22,7 @@ namespace nbody {
         void saveRun() const;
         size_t getNbodies(); 
         std::string getName() const;
-        int* getNewCoords();
+        float* getNewCoords();
     };
     
 } // namespace nbody

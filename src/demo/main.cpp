@@ -85,17 +85,17 @@ void NBodyWindow::keyboard( unsigned char key, int /*x*/, int /*y*/ ) {
 
 void NBodyWindow::display() {
     // get the new coordinates, update the display
-  int * coords = _sim->getNewCoords();
 
     _sim->saveRun();
     _sim->evolveSystem(1e4, 0.000001);
+    float * coords = _sim->getNewCoords();
     
   for(size_t i = 0; i < _bufSize / 4; ++i ) {
-        _buf[4*i] = coords[i]; // x
-        _buf[4*i+1] = coords[i + 1]; // y
-        _buf[4*i+2] = coords[i + 2]; // z
+        _buf[4*i] = coords[3*i]; // x
+        _buf[4*i+1] = coords[3*i + 1]; // y
+        _buf[4*i+2] = coords[3*i + 2]; // z
         _buf[4*i+3] = 1.0f; // nothing
-        std::cout << coords[i] << " " << coords[i + 1] << " " <<  coords[i + 2] << "\n";
+        std::cout << coords[3*i] << " " << coords[3*i + 1] << " " <<  coords[3*i + 2] << "\n";
   }
 
   delete [] coords;
@@ -128,7 +128,7 @@ void NBodyWindow::display() {
 int main( int argc, char **argv ) {
   // number of bodies and their coordinates
   size_t N;
-  int * coords;
+  float * coords;
   nbody::Simulation *sim;
 
   try {
@@ -149,9 +149,9 @@ int main( int argc, char **argv ) {
 
     // starting positions
     for( size_t i = 0; i < N; ++i ) {
-        buf[4*i] = coords[i]; // x
-        buf[4*i+1] = coords[i + 1]; // y
-        buf[4*i+2] = coords[i + 2]; // z
+        buf[4*i] = coords[3*i]; // x
+        buf[4*i+1] = coords[3*i + 1]; // y
+        buf[4*i+2] = coords[3*i + 2]; // z
         buf[4*i+3] = 1.0f; // nothing
 
         std::cout << buf[4*i] << " " << buf[4*i+1];
@@ -160,8 +160,11 @@ int main( int argc, char **argv ) {
 
     // for(int i = 0; i < 40; ++i) {
     //     std::cout << "==EVOLUTION " << i + 1 << "\n";
-    //     _sim->saveRun();
-    //     _sim->evolveSystem(1e4, 0.000001);
+    //     for( size_t t = 0; t < N; ++t ) {
+    //         std::cout << coords[3*t] << " " << coords[3*t + 1] << " " <<  coords[3*t + 2] << "\n";
+    //     }
+    //     sim->saveRun();
+    //     sim->evolveSystem(1e4, 0.000001);
     // }
 
     // start the magic!
