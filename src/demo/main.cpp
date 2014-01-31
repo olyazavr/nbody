@@ -77,6 +77,7 @@ void NBodyWindow::reshape( int theWidth, int theHeight ) {
 }
 
 void NBodyWindow::keyboard( unsigned char key, int /*x*/, int /*y*/ ) {
+    // exit if user presses ESC
     const char ESCAPE_KEY = 27;
   if( key == ESCAPE_KEY ) {
     glutLeaveMainLoop();
@@ -84,28 +85,30 @@ void NBodyWindow::keyboard( unsigned char key, int /*x*/, int /*y*/ ) {
 }
 
 void NBodyWindow::display() {
-    // get the new coordinates, update the display
 
+    // evolve system, get new coordinates
     _sim->saveRun();
     _sim->evolveSystem(1e4, 0.000001);
     float * coords = _sim->getNewCoords();
     
-  for(size_t i = 0; i < _bufSize / 4; ++i ) {
+    // display the new coordinates in the buffer
+    for(size_t i = 0; i < _bufSize / 4; ++i ) {
         _buf[4*i] = coords[3*i]; // x
         _buf[4*i+1] = coords[3*i + 1]; // y
         _buf[4*i+2] = coords[3*i + 2]; // z
         _buf[4*i+3] = 1.0f; // nothing
-        std::cout << coords[3*i] << " " << coords[3*i + 1] << " " <<  coords[3*i + 2] << "\n";
-  }
+        std::cout << _buf[4*i] << " " << _buf[4*i+1] << " " <<  _buf[4*i+2] << "\n";
+    }
 
-  delete [] coords;
+    // free resources!
+    delete [] coords;
 
-  // bind all the things
+    // bind all the things
     glBindBuffer( GL_ARRAY_BUFFER, _positionBufferObject );
     glBufferSubData( GL_ARRAY_BUFFER, 0, sizeof( float ) * _bufSize, _buf );
     glBindBuffer( GL_ARRAY_BUFFER, 0 );
 
-  // clear bg
+    // clear bg
     glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
@@ -147,16 +150,16 @@ int main( int argc, char **argv ) {
         size_t bufSize = 4 * N;
         float *buf = new float[bufSize];
 
-    // starting positions
-    for( size_t i = 0; i < N; ++i ) {
-        buf[4*i] = coords[3*i]; // x
-        buf[4*i+1] = coords[3*i + 1]; // y
-        buf[4*i+2] = coords[3*i + 2]; // z
-        buf[4*i+3] = 1.0f; // nothing
+        // starting positions
+        for( size_t i = 0; i < N; ++i ) {
+            buf[4*i] = coords[3*i]; // x
+            buf[4*i+1] = coords[3*i + 1]; // y
+            buf[4*i+2] = coords[3*i + 2]; // z
+            buf[4*i+3] = 1.0f; // nothing
 
-        std::cout << buf[4*i] << " " << buf[4*i+1];
-        std::cout << " " << buf[4*i+2] << " " << buf[4*i+3] << "\n";
-    }
+            std::cout << buf[4*i] << " " << buf[4*i+1];
+            std::cout << " " << buf[4*i+2] << " " << buf[4*i+3] << "\n";
+        }
 
     // for(int i = 0; i < 40; ++i) {
     //     std::cout << "==EVOLUTION " << i + 1 << "\n";
@@ -175,7 +178,7 @@ int main( int argc, char **argv ) {
     // pass in sim because we need updated coordinates. UNSAFE, but
     // so is all of OpenGL
     NBodyWindow * window = new NBodyWindow("N-Body Simulation!", sim, GlutWrapper::NDEBUG);
-    window->init( argc, argv, 500, 500, &shaders, bufSize, buf );
+    window->init(argc, argv, 500, 500, &shaders, bufSize, buf);
     window->run();
     sim->saveRun();
 
@@ -183,8 +186,11 @@ int main( int argc, char **argv ) {
     delete [] buf;
     delete sim;
     delete window;
+
     return 0;
+
   } catch( const std::exception &e ) {
+
     std::cerr << "Error: " << e.what() << "\n";
     return 1;
   }
