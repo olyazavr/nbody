@@ -54,7 +54,7 @@ TEST(txtInputTests, stationary) {
         
         /* 1*10^10 steps, each dt constant size */
         
-        sim.evolveSystem(1e10, 1);
+        sim.evolveSystem(1e4, .000001);
     }
     sim.saveRun();
     
@@ -83,23 +83,21 @@ TEST(txtInputTests, stationary) {
     ifstream fin("name.txt");
     //f.open("name.txt");
     //istream& fin = f;
-    char* line;
+    // char* line;
     
     while (fin.is_open()) {
         
         // this is kinda shitty and manual right now
         // read each line and compare answers
+        char line[512];
+        fin >> line;
         
-        char line[MAX_CHARS_PER_LINE];
-        getline(fin, line);
-        
-        // getline doesn't work, works with istream ---> either fix this or fix casting
         ASSERT_STREQ(line, "1");
         
-        fin.getline(line, MAX_CHARS_PER_LINE);
+        fin >> line;
         ASSERT_STREQ(line, "0 0 0  0 0 0  0 0 0 2.0e+1");
         
-        fin.getline(line, MAX_CHARS_PER_LINE);
+        fin >> line;
         ASSERT_STREQ(line, "");
         
     }
