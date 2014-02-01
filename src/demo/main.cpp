@@ -86,9 +86,11 @@ void NBodyWindow::keyboard( unsigned char key, int /*x*/, int /*y*/ ) {
 
 void NBodyWindow::display() {
 
-    // evolve system, get new coordinates
+    // evolve system
     _sim->saveRun();
+    // integrate it 1e4 times, with .000001 timestep each time
     _sim->evolveSystem(1e4, 0.000001);
+    // get new coordinates
     float * coords = _sim->getNewCoords();
     
     // display the new coordinates in the buffer
@@ -136,12 +138,14 @@ int main( int argc, char **argv ) {
 
   try {
         // read in this file (with bodies info)
+        // also try approx-equal-centralize.txt
         std::ifstream input{ "resources/nbody/binary-system-simple.txt" };
         sim = new nbody::Simulation(input);
 
         // get the number of bodes and coordinates
         N = sim->getNbodies();
         coords = sim->getNewCoords();
+
     } catch(const std::exception &e) {
         std::cerr << "Error: " << e.what() << "\n";
     }
