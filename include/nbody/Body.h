@@ -7,6 +7,7 @@
 
 namespace nbody {
     
+    // represents a single body with position, velocity, mass, and acceleration (force)
     class Body {
         Vector3f _position;
         Vector3f _velocity;

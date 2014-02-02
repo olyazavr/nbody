@@ -19,30 +19,11 @@
 
 using namespace std;
 
-
-std::string exec(char* cmd) {
-    
-    // cd into directory first
-    popen("cd", "r");
-    FILE* pipe = popen(cmd, "r");
-    if (!pipe) return "ERROR";
-    char buffer[128];
-    std::string result = "";
-    while(!feof(pipe)) {
-        if(fgets(buffer, 128, pipe) != NULL)
-            result += buffer;
-    }
-    pclose(pipe);
-    return result;
-}
-
-
 // One object at the center with no velocity or acceleration. Should not move.
 TEST(txtInputTests, stationary) {
     std::ifstream input{ "resources/nbody/unibody-stationary.txt" };
     nbody::Simulation sim{ input };
     for(int i = 0; i < 40; ++i) {
-        std::cout << "==EVOLUTION " << i + 1 << "\n";
         sim.saveRun();
         sim.evolveSystem(1e4, .000001);
     }
@@ -68,15 +49,13 @@ TEST(txtInputTests, stationary) {
 }
 
 // Six objects move toward center large mass
-
 TEST(txtInputTests, Centering) {
     std::ifstream input{ "resources/nbody/perfectly-symmetric-distribution-move-toward-center.txt" };
     nbody::Simulation sim{ input };
     
     for(int i = 0; i < 40; ++i) {
-        std::cout << "==EVOLUTION " << i + 1 << "\n";
         sim.saveRun();
-        sim.evolveSystem(1e10, .001);       // make sure to get final state
+        sim.evolveSystem(1e4, .001);       // make sure to get final state
     }
     
     sim.saveRun();
@@ -126,9 +105,8 @@ TEST(txtInputTests, zeroMass) {
     nbody::Simulation sim{ input };
     
     for(int i = 0; i < 40; ++i) {
-        std::cout << "==EVOLUTION " << i + 1 << "\n";
         sim.saveRun();
-        sim.evolveSystem(1e10, .001);       // make sure to get final state
+        sim.evolveSystem(1e4, .001);       // make sure to get final state
     }
     
     sim.saveRun();

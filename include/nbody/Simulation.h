@@ -8,6 +8,8 @@
 
 namespace nbody {
     
+    // keeps track of its system and interfaces with the 
+    // in and out files (read and writing results to them)
     class Simulation {
         System *_system;
         std::string _name;

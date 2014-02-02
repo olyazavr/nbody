@@ -9,6 +9,8 @@
 
 namespace nbody {
     
+    // represents a system of bodies, and 
+    // keeps track of its bodies and well as interacting them and returning the new coordinates of the bodies
     class System {
         size_t _nBodies;
         Body *_body; // this is an array!!!!
