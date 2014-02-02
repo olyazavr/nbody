@@ -149,7 +149,6 @@ int main( int argc, char **argv ) {
 
   try {
         // read in this file (with bodies info)
-        // also try approx-equal-centralize.txt
         std::ifstream input{ "resources/nbody/binary-system-simple.txt" };
         sim = new nbody::Simulation(input);
 
