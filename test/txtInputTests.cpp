@@ -29,33 +29,49 @@ TEST(txtInputTests, stationary) {
     }
     sim.saveRun();
     
-    ifstream fin("name.txt");
+    // read the result
+    ifstream fin("name.txt");       // all the outputs will have the filename "name.txt"
+                                    // new outputs get overwritten
     
     while (fin.is_open()) {
 
-        char line[512];
-        fin >> line;
+        char line[512];     // give enough character allocation for one line
+        fin >> line;        // read in a line
         
-        ASSERT_STREQ(line, "1");
+        ASSERT_STREQ(line, "1");        // check to see line is as expected
         
         fin >> line;
         ASSERT_STREQ(line, "0 0 0  0 0 0  0 0 0 2.0e+1");
         
         fin >> line;
-        ASSERT_STREQ(line, "");
+        ASSERT_STREQ(line, "");         // all test files and outputs have a hanging linebreak at the end
         
     }
     
 }
 
 // Six objects move toward center large mass
+// ideal situation
+
 TEST(txtInputTests, Centering) {
     std::ifstream input{ "resources/nbody/perfectly-symmetric-distribution-move-toward-center.txt" };
     nbody::Simulation sim{ input };
     
+    /*
+     7
+     1 0 0  0 0 0  0 0 0 2.0e+1
+     0 1 0  0 0 0  0 0 0 2.0e+1
+     0 0 1  0 0 0  0 0 0 2.0e+1
+     0 0 -1  0 0 0  0 0 0 2.0e+1
+     0 -1 0  0 0 0  0 0 0 2.0e+1
+     -1 0 0  0 0 0  0 0 0 2.0e+1
+     0 0 0  0 0 0  0 0 0 1.0e+10
+
+     */
+    
     for(int i = 0; i < 40; ++i) {
         sim.saveRun();
-        sim.evolveSystem(1e4, .001);       // make sure to get final state
+        sim.evolveSystem(1e4, .001);       // make sure to take enough steps to get final state
     }
     
     sim.saveRun();
@@ -67,7 +83,9 @@ TEST(txtInputTests, Centering) {
         char line[512];
         fin >> line;
         
-        ASSERT_STREQ(line, "7");
+        ASSERT_STREQ(line, "7");       // output should still have seven bodies
+        
+        // all of them should move towards the origin; mass is converved
         
         fin >> line;
         ASSERT_STREQ(line, "0 0 0  0 0 0  0 0 0 2.0e+1");
@@ -99,6 +117,7 @@ TEST(txtInputTests, Centering) {
 
 
 // Six objects converge towards center; seventh object has zero mass.
+// Test to see that zero mass doesn't break the system
 
 TEST(txtInputTests, zeroMass) {
     std::ifstream input{ "resources/nbody/centering-distribution-seven-zero-mass.txt" };
@@ -140,7 +159,6 @@ TEST(txtInputTests, zeroMass) {
         
         fin >> line;
         // The seventh object has a weird location/velocity/acceleration, but its mass is zero.
-        // Check to see that a zero mass doesn't break the system.
         
         fin >> line;
         ASSERT_STREQ(line, "");
@@ -265,6 +283,7 @@ TEST(txtInputTests, convergeShifted) {
      10.5 10.5 10.5  0 0 0  0 0 0 1.0e+10
 
      */
+    
     std::ifstream input{ "resources/nbody/converge-shifted.txt" };
     nbody::Simulation sim{ input };
     
