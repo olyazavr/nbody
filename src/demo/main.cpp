@@ -114,6 +114,17 @@ void NBodyWindow::display() {
     glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
+    // make 3D
+    gluPerspective(50, 1, 10, 600);
+    glEnable(GL_DEPTH_TEST);
+    glDepthMask(GL_TRUE);
+    glDepthFunc(GL_LEQUAL);
+    glDepthRange(0.0f, 1.0f);
+
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
+    glFrontFace(GL_CW);
+
     glUseProgram( _program );
     glBindBuffer( GL_ARRAY_BUFFER, _positionBufferObject );
     glEnableVertexAttribArray( 0 );
@@ -165,14 +176,6 @@ int main( int argc, char **argv ) {
             std::cout << " " << buf[4*i+2] << " " << buf[4*i+3] << "\n";
         }
 
-    // for(int i = 0; i < 40; ++i) {
-    //     std::cout << "==EVOLUTION " << i + 1 << "\n";
-    //     for( size_t t = 0; t < N; ++t ) {
-    //         std::cout << coords[3*t] << " " << coords[3*t + 1] << " " <<  coords[3*t + 2] << "\n";
-    //     }
-    //     sim->saveRun();
-    //     sim->evolveSystem(1e4, 0.000001);
-    // }
 
     // start the magic!
     Shaders shaders;

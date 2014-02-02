@@ -19,12 +19,6 @@
 
 using namespace std;
 
-int MAX_CHARS_PER_LINE = 512;
-
-
-// if dirent ends up not working out this is how to commandline bullshit
-// probably shouldn't use ever, muy bad
-
 
 std::string exec(char* cmd) {
     
@@ -45,45 +39,17 @@ std::string exec(char* cmd) {
 
 
 TEST(txtInputTests, stationary) {
-    
     std::ifstream input{ "resources/nbody/unibody-stationary.txt" };
     nbody::Simulation sim{input};
     for(int i = 0; i < 40; ++i) {
         std::cout << "==EVOLUTION " << i + 1 << "\n";
         sim.saveRun();
-        
-        /* 1*10^10 steps, each dt constant size */
-        
         sim.evolveSystem(1e4, .000001);
     }
     sim.saveRun();
     
-    //auto result = exec("ls");     use ls to get filename
-    
-    DIR *dir;
-    struct dirent *entry;
-    
-    // initialize string
-    string filename = "";
-    
-    if ((dir = opendir ("output path")) != NULL) {
-        //still need output path
-        
-        //get dat file
-        
-        filename = entry->d_name;
-        closedir (dir);
-        
-    } else {
-        
-        // well this sucks
-        perror ("error reading output file");
-    }
-    
+    string filename = "name";
     ifstream fin("name.txt");
-    //f.open("name.txt");
-    //istream& fin = f;
-    // char* line;
     
     while (fin.is_open()) {
         
@@ -101,12 +67,6 @@ TEST(txtInputTests, stationary) {
         ASSERT_STREQ(line, "");
         
     }
-    /* delete so the output directory only has one entry */
-    const char* path = (filename + ".txt").c_str();
-    if( remove( path ) != 0 ){
-        perror( "Error deleting file" );
-    }
-    
     
 }
 
