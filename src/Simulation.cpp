@@ -18,7 +18,7 @@ namespace nbody {
         if(_system != nullptr) {
             throw std::runtime_error("Tried to attach new system to running simulation!");
         } else {
-            _system = new System{input};
+            _system = new System<Integrator>{input};
         }
     }
 
@@ -40,7 +40,7 @@ namespace nbody {
     void Simulation::evolveSystem(int nSteps, float dt) {
         if(_system != nullptr) {
             for(int step = 0; step < nSteps; ++step) {
-                _system->update(dt);
+                _system->integrateSystem(dt);
             }
         } else {
             throw std::runtime_error("Tried to evolve simulation with no system!");
