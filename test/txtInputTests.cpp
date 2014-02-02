@@ -225,7 +225,7 @@ TEST(txtInputTests, centeringApprox) {
     
     for(int i = 0; i < 40; ++i) {
         sim.saveRun();
-        sim.evolveSystem(1e5, .001);       // make sure to get final state
+        sim.evolveSystem(1e4, .001);       // make sure to get final state
     }
     
     sim.saveRun();
@@ -289,7 +289,7 @@ TEST(txtInputTests, convergeShifted) {
     
     for(int i = 0; i < 40; ++i) {
         sim.saveRun();
-        sim.evolveSystem(1e5, .001);       // make sure to get final state
+        sim.evolveSystem(1e4, .001);       // make sure to get final state
     }
     
     sim.saveRun();
