@@ -188,7 +188,7 @@ TEST(txtInputTests, binarySimple) {
 // Approximately symmetric & stable objects
 // Six objects move toward center large mass
 
-TEST(txtInputTests, Centering) {
+TEST(txtInputTests, centeringApprox) {
     std::ifstream input{ "resources/nbody/approx-equal-centralize.txt" };
     
     /*
@@ -269,7 +269,7 @@ TEST(txtInputTests, convergeShifted) {
     nbody::Simulation sim{ input };
     
     for(int i = 0; i < 40; ++i) {
-        //sim.saveRun();
+        sim.saveRun();
         sim.evolveSystem(1e5, .001);       // make sure to get final state
     }
     
