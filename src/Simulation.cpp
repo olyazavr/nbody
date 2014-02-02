@@ -18,7 +18,7 @@ namespace nbody {
         if(_system != nullptr) {
             throw std::runtime_error("Tried to attach new system to running simulation!");
         } else {
-            _system = new System<Integrator>{input};
+            _system = new System{input};
         }
     }
 

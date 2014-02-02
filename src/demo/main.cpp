@@ -131,7 +131,7 @@ void NBodyWindow::display() {
     glVertexAttribPointer( 0, 4, GL_FLOAT, GL_FALSE, 0, 0 );
 
     // actually draw our stuff
-    glDrawArrays( GL_TRIANGLE_STRIP, 0, (GLsizei) _bufSize );
+    glDrawArrays( GL_POINTS, 0, (GLsizei) _bufSize );
 
     glDisableVertexAttribArray( 0 );
     glUseProgram( 0 );
